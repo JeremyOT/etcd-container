@@ -6,10 +6,11 @@ RUN cd /tmp; \
     /tmp/curl-7.30.0.ermine/curl.ermine -kL http://github.com/coreos/etcd/releases/download/v2.0.10/etcd-v2.0.10-linux-amd64.tar.gz > /tmp/etcd.tar.gz; \
     tar -xvzf /tmp/etcd.tar.gz; \
     mkdir -p /usr/local; \
-    mv /tmp/etcd-v0.4.6-linux-amd64 /usr/local/etcd; \
+    mv /tmp/etcd-v2.0.10-linux-amd64 /usr/local/etcd; \
     rm -rf /tmp/*;
-
+ADD address /usr/bin/address
+ADD run.sh /usr/bin/run.sh
 WORKDIR /var/etcd
 VOLUME ["/var/etcd"]
 EXPOSE 4001 7001
-ENTRYPOINT ["/usr/local/etcd/etcd"]
+ENTRYPOINT ["/usr/bin/run.sh"]
