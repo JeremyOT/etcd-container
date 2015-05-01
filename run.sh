@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 case $1 in
   auto)
@@ -9,7 +9,7 @@ case $1 in
       --advertise-client-urls="http://$ADDRESS:2379,http://$ADDRESS:4001" \
       --listen-peer-urls="http://0.0.0.0:2380,http://0.0.0.0:7001" \
       --initial-advertise-peer-urls="http://$ADDRESS:2380,http://$ADDRESS:7001" \
-      "${ARGS[@]}"
+      ${ARGS}
     ;;
   auto4)
     ARGS="${@:2}"
@@ -19,9 +19,9 @@ case $1 in
       --advertise-client-urls="http://$ADDRESS:2379,http://$ADDRESS:4001" \
       --listen-peer-urls="http://0.0.0.0:2380,http://0.0.0.0:7001" \
       --initial-advertise-peer-urls="http://$ADDRESS:2380,http://$ADDRESS:7001" \
-      "${ARGS[@]}"
+      ${ARGS}
     ;;
   *)
     ARGS="${@:1}"
-    /usr/local/etcd/etcd "${ARGS[@]}"
+    /usr/local/etcd/etcd ${ARGS}
 esac
